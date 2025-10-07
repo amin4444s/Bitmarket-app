@@ -1,255 +1,355 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>بیت مارکت</title>
-  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      padding: 0 16px;
-      background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
-      font-family: 'Vazir', sans-serif;
-      color: #e0e0e0;
-    }
-    header {
-      text-align: center;
-      padding: 32px 0 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      font-family: 'Vazir', sans-serif;
-    }
-    header h1 {
-      font-family: 'Vazir', sans-serif;
-      font-weight: 800;
-      font-size: 2.6rem;
-      background: linear-gradient(to right, #bbb, #eee);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin: 0;
-    }
-    header div {
-      font-family: 'Vazir', sans-serif;
-      font-weight: 600;
-      font-size: 1rem;
-      color: #b0b0b0;
-      margin-top: 2px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 24px;
-      padding: 32px 0 24px;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 16px;
-      padding: 16px;
-    }
-    .coin-name {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .coin-price {
-      font-family: 'DS-Digital', monospace;
-      font-size: 1.6rem;
-      margin-bottom: 6px;
-    }
-    .coin-change {
-      font-size: 0.95rem;
-      padding: 4px 10px;
-      border-radius: 10px;
-      display: inline-block;
-      margin-bottom: 10px;
-    }
-    .positive {
-      background: rgba(0, 200, 83, 0.15);
-      color: #00c853;
-    }
-    .negative {
-      background: rgba(255, 82, 82, 0.15);
-      color: #ff5252;
-    }
-    .copy-btn {
-      padding: 6px 12px;
-      border: none;
-      background: rgba(255,255,255,0.1);
-      border-radius: 8px;
-      color: #fff;
-      cursor: pointer;
-    }
-    .pagination {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      padding-bottom: 40px;
-    }
-    .pagination button {
-      padding: 6px 14px;
-      background: rgba(255,255,255,0.05);
-      color: #eee;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .pagination button:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-    /* Toast styles */
-    #toast {
-      position: fixed;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(90deg, #00c853, #64dd17);
-      color: white;
-      padding: 14px 28px;
-      border-radius: 28px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      font-family: 'Vazir', sans-serif;
-      box-shadow: 0 6px 18px rgba(0, 200, 83, 0.6);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease-in-out;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      z-index: 9999;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ساخت تیم فوتبال</title>
+<link href="https://cdn.fontcdn.ir/Font/Persian/Shabnam/Shabnam.css" rel="stylesheet">
+<style>
+html, body {
+  font-family: 'Shabnam', sans-serif;
+  background-color: #063f33;
+  color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* صفحه ساخت تیم */
+.create-team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  width: 90%;
+  max-width: 350px;
+}
+
+.logo-container {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #19d87c;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+  overflow: hidden;
+}
+.logo-container:hover { background-color: rgba(25, 216, 124, 0.15); }
+.logo-container img { width: 100%; height: 100%; object-fit: cover; }
+
+input[type="file"] { display: none; }
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  text-align: center;
+  font-size: 15px;
+  color: #f2f2f2;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.btn {
+  width: 100%;
+  background: #19d87c;
+  color: #063f33;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.btn:hover { background: #16c06e; }
+
+/* پاپ‌آپ */
+.popup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+}
+.popup-content {
+  background-color: #074c3c;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  width: 80%;
+  max-width: 280px;
+}
+.popup-content p { margin-bottom: 15px; font-size: 15px; }
+.close-btn {
+  background: #19d87c;
+  color: #063f33;
+  border: none;
+  padding: 10px 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* صفحه اصلی */
+.main-page {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: #063f33;
+  position: relative;
+}
+
+.team-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.team-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.team-header img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #19d87c;
+  cursor: pointer;
+}
+.team-header h2 {
+  font-size: 18px;
+  margin: 0;
+  color: #f2f2f2;
+  font-weight: 500;
+}
+.team-balance {
+  font-size: 15px;
+  color: #cfcfcf;
+}
+
+/* کارت بازی بعدی */
+.next-match-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 20px;
+  width: 65%;
+  max-width: 360px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+.next-match-card .mini-card {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  background: #fff;
+  color: #063f33;
+  padding: 5px 15px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+.next-match-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+/* کارت پایین صفحه */
+.bottom-card {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 100px);
+  background: rgba(0,0,0,0.6);
+  border-radius: 12px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  transition: transform 0.2s ease;
+}
+.bottom-card button {
+  background: #2196f3;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+}
+.bottom-card button:hover { background: #1976d2; }
+</style>
 </head>
 <body>
 
-<header>
-  <h1>بیت مارکت</h1>
-  <div>نرخ ارز دیجیتال</div>
-</header>
+<!-- صفحه ساخت تیم -->
+<div class="create-team">
+  <label for="team-logo" class="logo-container" id="logoPreview">افزودن لوگو</label>
+  <input type="file" id="team-logo" accept="image/*">
+  <input type="text" id="team-name" placeholder="نام تیم را وارد کنید">
+  <button class="btn" id="create-btn">تأیید ساخت تیم</button>
+</div>
 
-<main>
-  <div class="grid" id="coin-grid"></div>
-  <div class="pagination">
-    <button id="prevBtn">← قبلی</button>
-    <button id="nextBtn">بعدی →</button>
+<!-- پاپ‌آپ -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <p>نام تیم خود را وارد نمایید.</p>
+    <button class="close-btn" id="close-popup">بازگشت</button>
   </div>
-</main>
+</div>
 
-<div id="toast">
-  <span>⚡</span>
-  <span id="toast-message"></span>
+<!-- صفحه اصلی -->
+<div class="main-page" id="main-page">
+  <div class="team-header">
+    <div class="team-info">
+      <img id="header-logo" src="" alt="لوگو تیم">
+      <h2 id="header-name"></h2>
+    </div>
+    <div class="team-balance" id="team-balance">موجودی تیم: ۵۰,۰۰۰ سکه</div>
+  </div>
+
+  <div class="next-match-card">
+    <div class="mini-card">بازی بعدی</div>
+    <div id="match-content">
+      بازی بعدی‌ای وجود ندارد.
+    </div>
+  </div>
+
+  <div class="bottom-card">
+    <span>با عضویت در کانال روبیکا از اخبار ، جشنواره ها و دیگر موارد باخبر شوید .</span>
+    <button>عضویت</button>
+  </div>
 </div>
 
 <script>
-  const allCoins = [
-    { symbol: 'btcusdt', name: 'بیت‌کوین' },
-    { symbol: 'ethusdt', name: 'اتریوم' },
-    { symbol: 'trxusdt', name: 'ترون' },
-    { symbol: 'bnbusdt', name: 'بایننس کوین' },
-    { symbol: 'adausdt', name: 'کاردانو' },
-    { symbol: 'dogeusdt', name: 'دوج کوین' },
-    { symbol: 'solusdt', name: 'سولانا' },
-    { symbol: 'xrpusdt', name: 'ریپل' },
-    { symbol: 'maticusdt', name: 'پالیگان' },
-    { symbol: 'ltcusdt', name: 'لایت‌کوین' }
-  ];
+const logoInput = document.getElementById("team-logo");
+const logoPreview = document.getElementById("logoPreview");
+const headerLogo = document.getElementById("header-logo");
+const teamNameInput = document.getElementById("team-name");
+const createBtn = document.getElementById("create-btn");
+const popup = document.getElementById("popup");
+const closePopup = document.getElementById("close-popup");
+const mainPage = document.getElementById("main-page");
+const createTeamPage = document.querySelector(".create-team");
+const headerName = document.getElementById("header-name");
+const teamBalance = document.getElementById("team-balance");
+const matchContent = document.getElementById("match-content");
+const bottomCard = document.querySelector(".bottom-card");
+const bottomBtn = bottomCard.querySelector("button");
 
-  const itemsPerPage = 4;
-  let currentPage = 0;
+let teamData = JSON.parse(localStorage.getItem("teamData")) || null;
 
-  function renderPage() {
-    const grid = document.getElementById('coin-grid');
-    grid.innerHTML = '';
-    const start = currentPage * itemsPerPage;
-    const end = start + itemsPerPage;
-    const coinsToShow = allCoins.slice(start, end);
+function createDefaultLogo(){
+  const svg = `<svg width="55" height="55" xmlns="http://www.w3.org/2000/svg">
+    <rect width="55" height="55" rx="50%" fill="#0a5c46"/>
+    <text x="50%" y="55%" font-size="14" fill="white" font-family="Shabnam" text-anchor="middle" alignment-baseline="middle">Logo</text>
+  </svg>`;
+  return "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)));
+}
 
-    coinsToShow.forEach(coin => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <div class="coin-name">${coin.name}</div>
-        <div class="coin-price" id="price-${coin.symbol}">---</div>
-        <div class="coin-change" id="change-${coin.symbol}">---</div>
-        <button class="copy-btn" onclick="copyRate('${coin.name}', '${coin.symbol}')">کپی نرخ</button>
-      `;
-      grid.appendChild(card);
-      connectWebSocket(coin);
-    });
+if(teamData) showMainPage();
 
-    document.getElementById('prevBtn').disabled = currentPage === 0;
-    document.getElementById('nextBtn').disabled = end >= allCoins.length;
-  }
+// انتخاب لوگو
+logoPreview.addEventListener("click", () => logoInput.click());
+headerLogo.addEventListener("click", () => logoInput.click());
 
-  function connectWebSocket(coin) {
-    const ws = new WebSocket(`wss://stream.binance.com:9443/ws/${coin.symbol}@ticker`);
-    ws.onmessage = e => {
-      const data = JSON.parse(e.data);
-      const price = parseFloat(data.c).toLocaleString('fa-IR', { minimumFractionDigits: 2 });
-      const change = parseFloat(data.P).toFixed(2);
-      document.getElementById(`price-${coin.symbol}`).textContent = `$${price}`;
-      const changeEl = document.getElementById(`change-${coin.symbol}`);
-      changeEl.textContent = `${change}%`;
-      changeEl.className = `coin-change ${change >= 0 ? 'positive' : 'negative'}`;
+logoInput.addEventListener("change", function() {
+  const file = this.files[0];
+  if(file){
+    const reader = new FileReader();
+    reader.onload = function(e){
+      const logoSrc = e.target.result;
+      logoPreview.innerHTML = `<img src="${logoSrc}" alt="لوگو تیم">`;
+      headerLogo.src = logoSrc;
+      if(teamData){
+        teamData.logo = logoSrc;
+        saveTeamData();
+      }
     };
+    reader.readAsDataURL(file);
   }
+});
 
-  function showToast(message) {
-    const toast = document.getElementById('toast');
-    const toastMsg = document.getElementById('toast-message');
-    toastMsg.textContent = message;
-    toast.style.opacity = '1';
-    toast.style.pointerEvents = 'auto';
-
-    clearTimeout(toast.hideTimeout);
-    toast.hideTimeout = setTimeout(() => {
-      toast.style.opacity = '0';
-      toast.style.pointerEvents = 'none';
-    }, 3000);
+// ساخت تیم
+createBtn.addEventListener("click", () => {
+  const teamName = teamNameInput.value.trim();
+  if(teamName === ""){
+    popup.style.display = "flex";
+    return;
   }
+  teamData = {
+    name: teamName,
+    logo: createDefaultLogo(),
+    balance: 50000,
+    match: null
+  };
+  saveTeamData();
+  showMainPage();
+});
 
-  function copyRate(name, symbol) {
-    const price = document.getElementById(`price-${symbol}`).textContent;
-    const change = document.getElementById(`change-${symbol}`).textContent;
-    const now = new Date().toLocaleTimeString('fa-IR');
-    const text = `
-🔥 گزارش لحظه‌ای نرخ ارز دیجیتال 🔥
+closePopup.addEventListener("click", () => { popup.style.display = "none"; });
 
-🏷️ نام ارز: ${name} (${symbol.toUpperCase()})
-💰 قیمت فعلی: ${price}
-📊 تغییر 24 ساعته: ${change}
-⏰ زمان ثبت: ${now} (به وقت ایران)
+function saveTeamData(){ localStorage.setItem("teamData", JSON.stringify(teamData)); }
 
-📌 این اطلاعات به صورت لحظه‌ای و از منبع معتبر Binance دریافت شده است.
+function showMainPage(){
+  createTeamPage.style.display = "none";
+  mainPage.style.display = "flex";
+  headerName.textContent = teamData.name;
+  headerLogo.src = teamData.logo || createDefaultLogo();
+  teamBalance.textContent = "موجودی تیم: " + teamData.balance.toLocaleString() + " سکه";
 
-🙏 ممنون که از ما استفاده می‌کنید!
-    `.trim();
-
-    navigator.clipboard.writeText(text).then(() => {
-      showToast(`نرخ ارز (${name}) با موفقیت کپی شد.`);
-    }).catch(() => {
-      alert('خطا در کپی کردن متن.');
-    });
+  if(teamData.match){
+    const m = teamData.match;
+    matchContent.innerHTML = `
+      <div class="next-match-content">
+        <span>${m.guest}</span>
+        <span>${m.datetime}</span>
+        <span>${m.host}</span>
+      </div>
+    `;
+  } else {
+    matchContent.textContent = "بازی بعدی‌ای وجود ندارد.";
   }
+}
 
-  document.getElementById('prevBtn').addEventListener('click', () => {
-    if (currentPage > 0) {
-      currentPage--;
-      renderPage();
-    }
-  });
-
-  document.getElementById('nextBtn').addEventListener('click', () => {
-    if ((currentPage + 1) * itemsPerPage < allCoins.length) {
-      currentPage++;
-      renderPage();
-    }
-  });
-
-  renderPage();
+// انیمیشن کارت پایین صفحه
+bottomBtn.addEventListener("click", () => {
+  bottomCard.style.transform = "translate(-50%, -10px)";
+  setTimeout(() => { bottomCard.style.transform = "translateX(-50%)"; }, 200);
+  window.open('https://rubika.ir/Football33_Game', '_blank');
+});
 </script>
 
 </body>
