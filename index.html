@@ -1,424 +1,402 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ساخت تیم فوتبال</title>
-<link href="https://cdn.fontcdn.ir/Font/Persian/Shabnam/Shabnam.css" rel="stylesheet">
-<style>
-html, body {
-  font-family: 'Shabnam', sans-serif;
-  background-color: #063f33;
-  color: #f2f2f2;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مربی جهانی - نتایج فوتبال</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Harmattan&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Harmattan', sans-serif;
+        }
 
-/* صفحه ساخت تیم حرفه‌ای */
-.create-team {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  width: 90%;
-  max-width: 360px;
-  padding: 30px 25px;
-  background: rgba(25, 216, 124, 0.1);
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(25, 216, 124, 0.25);
-  transition: transform 0.3s ease;
-}
-.create-team:hover {
-  transform: scale(1.02);
-}
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #f59e0b;
+            --accent-dark: #d97706;
+            --text: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --card-bg: linear-gradient(135deg, #1e293b, #0f172a);
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            --border: rgba(255, 255, 255, 0.1);
+        }
 
-.logo-container {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #19d87c;
-  font-size: 14px;
-  cursor: pointer;
-  overflow: hidden;
-  box-shadow: 0 4px 18px rgba(25, 216, 124, 0.4);
-  transition: all 0.3s ease;
-}
-.logo-container:hover {
-  transform: scale(1.08);
-  background: rgba(25, 216, 124, 0.15);
-  box-shadow: 0 6px 22px rgba(25, 216, 124, 0.6);
-}
-.logo-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  transition: transform 0.3s ease;
-}
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.4;
+        }
 
-input[type="file"] { display: none; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-input[type="text"] {
-  width: 100%;
-  padding: 14px 16px;
-  border: none;
-  border-radius: 14px;
-  outline: none;
-  text-align: center;
-  font-size: 16px;
-  color: #f2f2f2;
-  background: rgba(0, 0, 0, 0.25);
-  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-input[type="text"]:focus {
-  background: rgba(25, 216, 124, 0.1);
-  box-shadow: 0 0 12px rgba(25, 216, 124, 0.6);
-}
+        /* هدر جدید */
+        .main-header {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-.btn {
-  width: 100%;
-  padding: 14px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #063f33;
-  background: linear-gradient(135deg, #19d87c, #12a05e);
-  border: none;
-  border-radius: 14px;
-  cursor: pointer;
-  box-shadow: 0 5px 18px rgba(25, 216, 124, 0.5);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
-}
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 7px 22px rgba(25, 216, 124, 0.6);
-  background: linear-gradient(135deg, #16c06e, #0fa55b);
-}
+        .header-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+        }
 
-/* پاپ‌آپ */
-.popup {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(3px);
-}
-.popup-content {
-  background-color: #074c3c;
-  padding: 25px;
-  border-radius: 12px;
-  text-align: center;
-  width: 80%;
-  max-width: 280px;
-}
-.popup-content p { margin-bottom: 15px; font-size: 15px; }
-.close-btn {
-  background: #19d87c;
-  color: #063f33;
-  border: none;
-  padding: 10px 40px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-}
+        /* کارت‌های بازی */
+        .matches-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
 
-/* صفحه اصلی */
-.main-page {
-  display: none;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  background-color: #063f33;
-  position: relative;
-}
+        .match-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
 
-.team-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
-}
-.team-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.team-header img {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #19d87c;
-  cursor: pointer;
-}
-.team-header h2 {
-  font-size: 18px;
-  margin: 0;
-  color: #f2f2f2;
-  font-weight: 500;
-}
-.team-balance {
-  font-size: 15px;
-  color: #cfcfcf;
-}
+        .match-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+        }
 
-/* 🎯 کارت بازی بعدی */
-.next-match-card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 25px 20px 30px;
-  width: 75%;
-  max-width: 380px;
-  min-height: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 25px rgba(0,0,0,0.4);
-  overflow: visible;
-  transition: 0.3s ease;
-}
-.next-match-card:hover {
-  transform: translate(-50%, -50%) scale(1.03);
-  box-shadow: 0 0 35px rgba(25,216,124,0.3);
-}
-.next-match-card .mini-card {
-  position: absolute;
-  top: -12px;
-  right: 20px;
-  background: linear-gradient(135deg, #19d87c, #12a05e);
-  color: #063f33;
-  padding: 6px 18px;
-  font-size: 13px;
-  font-weight: bold;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(25,216,124,0.4);
-}
-#match-content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #f2f2f2;
-  font-size: 15px;
-}
-.next-match-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
-  font-size: 14px;
-  margin-top: 10px;
-  background: rgba(0,0,0,0.3);
-  padding: 10px 15px;
-  border-radius: 10px;
-  box-shadow: inset 0 0 8px rgba(255,255,255,0.05);
-}
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
 
-/* 🎨 کارت پایین صفحه حرفه‌ای‌تر */
-.bottom-card {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 100px);
-  background: linear-gradient(135deg, rgba(25,216,124,0.3), rgba(0,0,0,0.6));
-  border-radius: 16px;
-  padding: 16px 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 14px;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-.bottom-card:hover {
-  transform: translateX(-50%) translateY(-3px);
-  box-shadow: 0 10px 25px rgba(25,216,124,0.5);
-}
-.bottom-card span {
-  color: #f2f2f2;
-  font-weight: 500;
-  line-height: 1.3;
-}
-.bottom-card button {
-  background: #19d87c;
-  border: none;
-  color: #063f33;
-  padding: 8px 16px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: bold;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 12px rgba(25,216,124,0.4);
-}
-.bottom-card button:hover {
-  background: #12c066;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(25,216,124,0.5);
-}
-</style>
+        .league {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        .date {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* بخش تیم‌ها و نتایج */
+        .match-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 40%;
+        }
+
+        .team-logo {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .team-name {
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+
+        .score-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .score-box {
+            width: 35px;
+            height: 35px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .colon {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .vs {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--accent);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        /* اطلاعات پایین */
+        .match-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .stadium, .referee {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* رسپانسیو */
+        @media (max-width: 768px) {
+            .matches-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .match-card {
+                padding: 15px;
+            }
+            
+            .team-logo {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .team-name {
+                font-size: 0.8rem;
+            }
+            
+            .header-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<!-- صفحه ساخت تیم -->
-<div class="create-team">
-  <label for="team-logo" class="logo-container" id="logoPreview">افزودن لوگو</label>
-  <input type="file" id="team-logo" accept="image/*">
-  <input type="text" id="team-name" placeholder="نام تیم را وارد کنید">
-  <button class="btn" id="create-btn">تأیید ساخت تیم</button>
-</div>
-
-<!-- پاپ‌آپ -->
-<div class="popup" id="popup">
-  <div class="popup-content">
-    <p>نام تیم خود را وارد نمایید.</p>
-    <button class="close-btn" id="close-popup">بازگشت</button>
-  </div>
-</div>
-
-<!-- صفحه اصلی -->
-<div class="main-page" id="main-page">
-  <div class="team-header">
-    <div class="team-info">
-      <img id="header-logo" src="" alt="لوگو تیم">
-      <h2 id="header-name"></h2>
+    <div class="container">
+        <!-- هدر جدید -->
+        <header class="main-header">
+            <h1 class="header-title">مربی جهانی</h1>
+        </header>
+        
+        <div class="matches-container">
+            <!-- بازی 1 -->
+            <div class="match-card">
+                <div class="match-header">
+                    <span class="league">لیگ برتر ایران</span>
+                    <span class="date" data-save="date-1">۰۰/۰۰/۰۰ - ۰۰:۰۰</span>
+                </div>
+                <div class="match-content">
+                    <div class="team">
+                        <div class="team-logo"></div>
+                        <span class="team-name" data-save="home-1">تیم میزبان</span>
+                    </div>
+                    <div class="score-section">
+                        <span class="score-box" data-save="score-home-1">0</span>
+                        <span class="colon">:</span>
+                        <span class="score-box" data-save="score-away-1">0</span>
+                    </div>
+                    <div class="team">
+                        <div class="team-logo"></div>
+                        <span class="team-name" data-save="away-1">تیم مهمان</span>
+                    </div>
+                </div>
+                <div class="match-info">
+                    <div class="stadium"><i class="fas fa-map-marker-alt"></i> آزادی</div>
+                    <div class="referee"><i class="fas fa-user"></i> مهدی صادقی</div>
+                </div>
+            </div>
+            
+            <!-- بازی 2 -->
+            <div class="match-card">
+                <div class="match-header">
+                    <span class="league">لیگ برتر ایران</span>
+                    <span class="date" data-save="date-2">۰۰/۰۰/۰۰ - ۰۰:۰۰</span>
+                </div>
+                <div class="match-content">
+                    <div class="team">
+                        <div class="team-logo"></div>
+                        <span class="team-name" data-save="home-2">تیم میزبان</span>
+                    </div>
+                    <div class="score-section">
+                        <span class="score-box" data-save="score-home-2">0</span>
+                        <span class="colon">:</span>
+                        <span class="score-box" data-save="score-away-2">0</span>
+                    </div>
+                    <div class="team">
+                        <div class="team-logo"></div>
+                        <span class="team-name" data-save="away-2">تیم مهمان</span>
+                    </div>
+                </div>
+                <div class="match-info">
+                    <div class="stadium"><i class="fas fa-map-marker-alt"></i> سهند</div>
+                    <div class="referee"><i class="fas fa-user"></i> علیرضا فغانی</div>
+                </div>
+            </div>
+            
+            <!-- بازی 3 -->
+            <div class="match-card">
+                <div class="match-header">
+                    <span class="league">لیگ برتر ایران</span>
+                    <span class="date" data-save="date-3">۰۰/۰۰/۰۰ - ۰۰:۰۰</span>
+                </div>
+                <div class="match-content">
+                    <div class="team">
+                        <div class="team-logo"></div>
+                        <span class="team-name" data-save="home-3">تیم میزبان</span>
+                    </div>
+                    <div class="score-section">
+                        <span class="score-box" data-save="score-home-3">0</span>
+                        <span class="colon">:</span>
+                        <span class="score-box" data-save="score-away-3">0</span>
+                    </div>
+                    <div class="team">
+                        <div class="team-logo"></div>
+                        <span class="team-name" data-save="away-3">تیم مهمان</span>
+                    </div>
+                </div>
+                <div class="match-info">
+                    <div class="stadium"><i class="fas fa-map-marker-alt"></i> نقش جهان</div>
+                    <div class="referee"><i class="fas fa-user"></i> محمدحسین زاهدی</div>
+                </div>
+            </div>
+            
+            <!-- بازی 4 -->
+            <div class="match-card">
+                <div class="match-header">
+                    <span class="league">لیگ برتر ایران</span>
+                    <span class="date" data-save="date-4">۰۰/۰۰/۰۰ - ۰۰:۰۰</span>
+                </div>
+                <div class="match-content">
+                    <div class="team">
+                        <div class="team-logo"></div>
+                        <span class="team-name" data-save="home-4">تیم میزبان</span>
+                    </div>
+                    <div class="score-section">
+                        <span class="score-box" data-save="score-home-4">0</span>
+                        <span class="colon">:</span>
+                        <span class="score-box" data-save="score-away-4">0</span>
+                    </div>
+                    <div class="team">
+                        <div class="team-logo"></div>
+                        <span class="team-name" data-save="away-4">تیم مهمان</span>
+                    </div>
+                </div>
+                <div class="match-info">
+                    <div class="stadium"><i class="fas fa-map-marker-alt"></i> امام رضا</div>
+                    <div class="referee"><i class="fas fa-user"></i> وحید کاظمی</div>
+                </div>
+            </div>
+            
+            <!-- بازی 5 -->
+            <div class="match-card">
+                <div class="match-header">
+                    <span class="league">لیگ برتر ایران</span>
+                    <span class="date" data-save="date-5">۰۰/۰۰/۰۰ - ۰۰:۰۰</span>
+                </div>
+                <div class="match-content">
+                    <div class="team">
+                        <div class="team-logo"></div>
+                        <span class="team-name" data-save="home-5">تیم میزبان</span>
+                    </div>
+                    <div class="score-section">
+                        <span class="score-box" data-save="score-home-5">0</span>
+                        <span class="colon">:</span>
+                        <span class="score-box" data-save="score-away-5">0</span>
+                    </div>
+                    <div class="team">
+                        <div class="team-logo"></div>
+                        <span class="team-name" data-save="away-5">تیم مهمان</span>
+                    </div>
+                </div>
+                <div class="match-info">
+                    <div class="stadium"><i class="fas fa-map-marker-alt"></i> تختی</div>
+                    <div class="referee"><i class="fas fa-user"></i> بیژن حیدری</div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="team-balance" id="team-balance">موجودی تیم: ۵۰,۰۰۰ سکه</div>
-  </div>
 
-  <div class="next-match-card">
-    <div class="mini-card">بازی بعدی</div>
-    <div id="match-content">
-      بازی بعدی‌ای وجود ندارد.
-    </div>
-  </div>
+    <script>
+        // ذخیره اطلاعات در localStorage
+        function saveData() {
+            const data = {};
+            
+            // ذخیره اطلاعات از المان‌های دارای data-save
+            const elements = document.querySelectorAll('[data-save]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-save');
+                data[key] = element.textContent;
+            });
+            
+            localStorage.setItem('footballMatchesData', JSON.stringify(data));
+        }
 
-  <div class="bottom-card">
-    <span>با عضویت در کانال روبیکا از اخبار ، جشنواره ها و دیگر موارد باخبر شوید .</span>
-    <button>عضویت</button>
-  </div>
-</div>
+        // بارگذاری اطلاعات از localStorage
+        function loadData() {
+            const savedData = localStorage.getItem('footballMatchesData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                
+                Object.keys(data).forEach(key => {
+                    const element = document.querySelector(`[data-save="${key}"]`);
+                    if (element) {
+                        element.textContent = data[key];
+                    }
+                });
+            }
+        }
 
-<script>
-const logoInput = document.getElementById("team-logo");
-const logoPreview = document.getElementById("logoPreview");
-const headerLogo = document.getElementById("header-logo");
-const teamNameInput = document.getElementById("team-name");
-const createBtn = document.getElementById("create-btn");
-const popup = document.getElementById("popup");
-const closePopup = document.getElementById("close-popup");
-const mainPage = document.getElementById("main-page");
-const createTeamPage = document.querySelector(".create-team");
-const headerName = document.getElementById("header-name");
-const teamBalance = document.getElementById("team-balance");
-const matchContent = document.getElementById("match-content");
-const bottomCard = document.querySelector(".bottom-card");
-const bottomBtn = bottomCard.querySelector("button");
+        // بارگذاری اطلاعات هنگام لود صفحه
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+        });
 
-let teamData = JSON.parse(localStorage.getItem("teamData")) || null;
-
-function createDefaultLogo(){
-  const svg = `<svg width="55" height="55" xmlns="http://www.w3.org/2000/svg">
-    <rect width="55" height="55" rx="50%" fill="#0a5c46"/>
-    <text x="50%" y="55%" font-size="14" fill="white" font-family="Shabnam" text-anchor="middle" alignment-baseline="middle">Logo</text>
-  </svg>`;
-  return "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(svg)));
-}
-
-if(teamData) showMainPage();
-
-logoPreview.addEventListener("click", () => logoInput.click());
-headerLogo.addEventListener("click", () => logoInput.click());
-
-logoInput.addEventListener("change", function() {
-  const file = this.files[0];
-  if(file){
-    const reader = new FileReader();
-    reader.onload = function(e){
-      const logoSrc = e.target.result;
-      logoPreview.innerHTML = `<img src="${logoSrc}" alt="لوگو تیم">`;
-      headerLogo.src = logoSrc;
-      if(teamData){
-        teamData.logo = logoSrc;
-        saveTeamData();
-      }
-    };
-    reader.readAsDataURL(file);
-  }
-});
-
-createBtn.addEventListener("click", () => {
-  const teamName = teamNameInput.value.trim();
-  if(teamName === ""){
-    popup.style.display = "flex";
-    return;
-  }
-  teamData = {
-    name: teamName,
-    logo: createDefaultLogo(),
-    balance: 50000,
-    match: null
-  };
-  saveTeamData();
-  showMainPage();
-});
-
-closePopup.addEventListener("click", () => { popup.style.display = "none"; });
-
-function saveTeamData(){ localStorage.setItem("teamData", JSON.stringify(teamData)); }
-
-function showMainPage(){
-  createTeamPage.style.display = "none";
-  mainPage.style.display = "flex";
-  headerName.textContent = teamData.name;
-  headerLogo.src = teamData.logo || createDefaultLogo();
-  teamBalance.textContent = "موجودی تیم: " + teamData.balance.toLocaleString() + " سکه";
-
-  if(teamData.match){
-    const m = teamData.match;
-    matchContent.innerHTML = `
-      <div class="next-match-content">
-        <span>${m.guest}</span>
-        <span>${m.datetime}</span>
-        <span>${m.host}</span>
-      </div>
-    `;
-  } else {
-    matchContent.textContent = "بازی بعدی‌ای وجود ندارد.";
-  }
-}
-
-bottomBtn.addEventListener("click", () => {
-  bottomCard.style.transform = "translate(-50%, -10px)";
-  setTimeout(() => { bottomCard.style.transform = "translateX(-50%)"; }, 200);
-  window.open('https://rubika.ir/Football33_Game', '_blank');
-});
-</script>
-
+        // ذخیره اطلاعات هنگام بسته شدن صفحه
+        window.addEventListener('beforeunload', saveData);
+    </script>
 </body>
 </html>
