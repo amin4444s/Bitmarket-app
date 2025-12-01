@@ -123,6 +123,13 @@
             justify-content: center;
             margin-bottom: 8px;
             border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .team-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .team-name {
@@ -184,7 +191,133 @@
             gap: 5px;
         }
 
+        /* جدول رده‌بندی - بهینه‌شده */
+        .table-container {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-top: 40px;
+            overflow-x: auto;
+        }
+
+        .table-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 25px;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .standings-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+
+        .standings-table th {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 14px 12px;
+            text-align: center;
+            font-weight: 700;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            font-size: 1rem;
+            white-space: nowrap;
+        }
+
+        .standings-table td {
+            padding: 14px 12px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        .standings-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .standings-table tr:nth-child(1) {
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .standings-table tr:nth-child(2) {
+            background: rgba(245, 158, 11, 0.05);
+        }
+
+        .standings-table tr:nth-child(3) {
+            background: rgba(245, 158, 11, 0.03);
+        }
+
+        .team-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: flex-start;
+            min-width: 180px;
+        }
+
+        .team-name-compact {
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 150px;
+        }
+
+        .position {
+            font-weight: 700;
+            color: var(--accent);
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        /* بهینه‌سازی برای نمایش بهتر */
+        .standings-table th:nth-child(1) { width: 70px; }
+        .standings-table th:nth-child(2) { width: 200px; text-align: right; padding-right: 20px; }
+        .standings-table th:nth-child(3),
+        .standings-table th:nth-child(4),
+        .standings-table th:nth-child(5),
+        .standings-table th:nth-child(6),
+        .standings-table th:nth-child(7) { width: 75px; }
+        .standings-table th:nth-child(8),
+        .standings-table th:nth-child(9),
+        .standings-table th:nth-child(10) { width: 85px; }
+
+        .standings-table td:nth-child(2) { text-align: right; padding-right: 20px; }
+
         /* رسپانسیو */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .standings-table th,
+            .standings-table td {
+                padding: 12px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .team-logo {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .standings-table th:nth-child(2) { width: 180px; }
+            .team-name-compact {
+                max-width: 130px;
+            }
+        }
+
         @media (max-width: 768px) {
             .matches-container {
                 grid-template-columns: 1fr;
@@ -193,9 +326,48 @@
             .header-title {
                 font-size: 2.2rem;
             }
+            
+            .standings-table {
+                font-size: 0.85rem;
+                min-width: 800px;
+            }
+            
+            .standings-table th,
+            .standings-table td {
+                padding: 10px 8px;
+                font-size: 0.85rem;
+            }
+            
+            .table-container {
+                padding: 20px;
+            }
+            
+            .table-title {
+                font-size: 1.5rem;
+            }
+            
+            .team-logo {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .position {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+            
+            .standings-table th:nth-child(2) { width: 170px; }
+            .team-name-compact {
+                max-width: 120px;
+            }
         }
 
         @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
             .match-card {
                 padding: 15px;
             }
@@ -206,11 +378,43 @@
             }
             
             .team-name {
-                font-size: 0.8rem;
+                font-size: 0.85rem;
             }
             
             .header-title {
                 font-size: 1.8rem;
+            }
+            
+            .standings-table {
+                font-size: 0.8rem;
+                min-width: 750px;
+            }
+            
+            .standings-table th,
+            .standings-table td {
+                padding: 9px 7px;
+                font-size: 0.8rem;
+            }
+            
+            .table-title {
+                font-size: 1.3rem;
+                margin-bottom: 20px;
+            }
+            
+            .position {
+                width: 28px;
+                height: 28px;
+                font-size: 0.85rem;
+            }
+            
+            .team-logo {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .standings-table th:nth-child(2) { width: 160px; }
+            .team-name-compact {
+                max-width: 110px;
             }
         }
     </style>
@@ -227,12 +431,14 @@
             <div class="match-card">
                 <div class="match-header">
                     <span class="league">لیگ برتر ایران</span>
-                    <span class="date" data-save="date-1">۰۰/۰۰/۰۰ - ۰۰:۰۰</span>
+                    <span class="date" data-save="date-1">۱۴۰۴/۰۹/۱۱ - -</span>
                 </div>
                 <div class="match-content">
                     <div class="team">
-                        <div class="team-logo"></div>
-                        <span class="team-name" data-save="home-1">تیم میزبان</span>
+                        <div class="team-logo">
+                            <img src="https://instasize.com/api/image/ef7e18d48d5afc8cb634c8859e122b7f7b679e761ee6e01f38d0bf7bcc9efd67.jpeg" alt="آب موز">
+                        </div>
+                        <span class="team-name" data-save="home-1">آب موز</span>
                     </div>
                     <div class="score-section">
                         <span class="score-box" data-save="score-home-1">0</span>
@@ -240,8 +446,10 @@
                         <span class="score-box" data-save="score-away-1">0</span>
                     </div>
                     <div class="team">
-                        <div class="team-logo"></div>
-                        <span class="team-name" data-save="away-1">تیم مهمان</span>
+                        <div class="team-logo">
+                            <img src="https://instasize.com/api/image/2aba56e672f243dd046a93a9bd6526cbb8abcd5e5687b36d0f257c8dea25eb2f.jpeg" alt="کوشخول اف سی">
+                        </div>
+                        <span class="team-name" data-save="away-1">کوشخول اف سی</span>
                     </div>
                 </div>
                 <div class="match-info">
@@ -254,12 +462,14 @@
             <div class="match-card">
                 <div class="match-header">
                     <span class="league">لیگ برتر ایران</span>
-                    <span class="date" data-save="date-2">۰۰/۰۰/۰۰ - ۰۰:۰۰</span>
+                    <span class="date" data-save="date-2">۱۴۰۴/۰۹/۱۱ - -</span>
                 </div>
                 <div class="match-content">
                     <div class="team">
-                        <div class="team-logo"></div>
-                        <span class="team-name" data-save="home-2">تیم میزبان</span>
+                        <div class="team-logo">
+                            <img src="https://instasize.com/api/image/ae49beb6d4cdba776b65cb4bf529384d5e1d8ce4a8cb5a0521eb76ec01edd132.jpeg" alt="فوت موپ">
+                        </div>
+                        <span class="team-name" data-save="home-2">فوت موپ</span>
                     </div>
                     <div class="score-section">
                         <span class="score-box" data-save="score-home-2">0</span>
@@ -267,8 +477,10 @@
                         <span class="score-box" data-save="score-away-2">0</span>
                     </div>
                     <div class="team">
-                        <div class="team-logo"></div>
-                        <span class="team-name" data-save="away-2">تیم مهمان</span>
+                        <div class="team-logo">
+                            <img src="https://instasize.com/api/image/770483721f5d4d823a8d7aca9439d53a2d71048a5241410fd4841847bbc511a9.jpeg" alt="ای اف سی">
+                        </div>
+                        <span class="team-name" data-save="away-2">ای اف سی</span>
                     </div>
                 </div>
                 <div class="match-info">
@@ -281,12 +493,14 @@
             <div class="match-card">
                 <div class="match-header">
                     <span class="league">لیگ برتر ایران</span>
-                    <span class="date" data-save="date-3">۰۰/۰۰/۰۰ - ۰۰:۰۰</span>
+                    <span class="date" data-save="date-3">۱۴۰۴/۰۹/۱۱ - -</span>
                 </div>
                 <div class="match-content">
                     <div class="team">
-                        <div class="team-logo"></div>
-                        <span class="team-name" data-save="home-3">تیم میزبان</span>
+                        <div class="team-logo">
+                            <img src="https://instasize.com/api/image/c857efc1cbe354be6cc7782c7c8df51cac5331b422f72cf2efc34b83078a240a.jpeg" alt="ستاره سرخ">
+                        </div>
+                        <span class="team-name" data-save="home-3">ستاره سرخ</span>
                     </div>
                     <div class="score-section">
                         <span class="score-box" data-save="score-home-3">0</span>
@@ -294,8 +508,10 @@
                         <span class="score-box" data-save="score-away-3">0</span>
                     </div>
                     <div class="team">
-                        <div class="team-logo"></div>
-                        <span class="team-name" data-save="away-3">تیم مهمان</span>
+                        <div class="team-logo">
+                            <img src="https://instasize.com/api/image/9fce86001d0554dade6a2d8aa6e3f84da67f93208216820b1a94f1d04ed96f66.jpeg" alt="خیارشور اف سی">
+                        </div>
+                        <span class="team-name" data-save="away-3">خیارشور اف سی</span>
                     </div>
                 </div>
                 <div class="match-info">
@@ -308,12 +524,14 @@
             <div class="match-card">
                 <div class="match-header">
                     <span class="league">لیگ برتر ایران</span>
-                    <span class="date" data-save="date-4">۰۰/۰۰/۰۰ - ۰۰:۰۰</span>
+                    <span class="date" data-save="date-4">۱۴۰۴/۰۹/۱۱ - -</span>
                 </div>
                 <div class="match-content">
                     <div class="team">
-                        <div class="team-logo"></div>
-                        <span class="team-name" data-save="home-4">تیم میزبان</span>
+                        <div class="team-logo">
+                            <img src="https://instasize.com/api/image/8783c2f4c45a1e0a392d9f9e077503540374af4fca1248f16c5c4e6430de9a36.jpeg" alt="گاتهام یونایتد">
+                        </div>
+                        <span class="team-name" data-save="home-4">گاتهام یونایتد</span>
                     </div>
                     <div class="score-section">
                         <span class="score-box" data-save="score-home-4">0</span>
@@ -321,8 +539,10 @@
                         <span class="score-box" data-save="score-away-4">0</span>
                     </div>
                     <div class="team">
-                        <div class="team-logo"></div>
-                        <span class="team-name" data-save="away-4">تیم مهمان</span>
+                        <div class="team-logo">
+                            <img src="https://instasize.com/api/image/12ae8087a1437d8db877e5d65ebbaee1e9e1ec5f509aa38b1069910d0b934698.jpeg" alt="آذریورد">
+                        </div>
+                        <span class="team-name" data-save="away-4">آذریورد</span>
                     </div>
                 </div>
                 <div class="match-info">
@@ -335,12 +555,14 @@
             <div class="match-card">
                 <div class="match-header">
                     <span class="league">لیگ برتر ایران</span>
-                    <span class="date" data-save="date-5">۰۰/۰۰/۰۰ - ۰۰:۰۰</span>
+                    <span class="date" data-save="date-5">۱۴۰۴/۰۹/۱۱ - -</span>
                 </div>
                 <div class="match-content">
                     <div class="team">
-                        <div class="team-logo"></div>
-                        <span class="team-name" data-save="home-5">تیم میزبان</span>
+                        <div class="team-logo">
+                            <img src="https://instasize.com/api/image/8d27995c45ba0faf6d44f78f5dbf8d30ead269de424c4d3b7384a511f33c0513.jpeg" alt="شاگردان قلعه نویی">
+                        </div>
+                        <span class="team-name" data-save="home-5">شاگردان قلعه‌نویی</span>
                     </div>
                     <div class="score-section">
                         <span class="score-box" data-save="score-home-5">0</span>
@@ -348,8 +570,10 @@
                         <span class="score-box" data-save="score-away-5">0</span>
                     </div>
                     <div class="team">
-                        <div class="team-logo"></div>
-                        <span class="team-name" data-save="away-5">تیم مهمان</span>
+                        <div class="team-logo">
+                            <img src="https://instasize.com/api/image/673f11cf0a3c518a05024204d2ab6c58df3aaf921c22eed301910fc6fb4292a6.jpeg" alt="بلولاک">
+                        </div>
+                        <span class="team-name" data-save="away-5">بلولاک</span>
                     </div>
                 </div>
                 <div class="match-info">
@@ -357,6 +581,219 @@
                     <div class="referee"><i class="fas fa-user"></i> بیژن حیدری</div>
                 </div>
             </div>
+        </div>
+        
+        <!-- جدول رده‌بندی -->
+        <div class="table-container">
+            <h2 class="table-title">جدول رده‌بندی لیگ برتر ایران</h2>
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th>رتبه</th>
+                        <th>تیم</th>
+                        <th>بازی</th>
+                        <th>امتیاز</th>
+                        <th>برد</th>
+                        <th>مساوی</th>
+                        <th>باخت</th>
+                        <th>گل زده</th>
+                        <th>گل خورده</th>
+                        <th>تفاضل</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="position">1</span></td>
+                        <td>
+                            <div class="team-row">
+                                <div class="team-logo">
+                                    <img src="https://instasize.com/api/image/770483721f5d4d823a8d7aca9439d53a2d71048a5241410fd4841847bbc511a9.jpeg" alt="ای اف سی">
+                                </div>
+                                <span class="team-name-compact">ای اف سی</span>
+                            </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><span class="position">2</span></td>
+                        <td>
+                            <div class="team-row">
+                                <div class="team-logo">
+                                    <img src="https://instasize.com/api/image/2aba56e672f243dd046a93a9bd6526cbb8abcd5e5687b36d0f257c8dea25eb2f.jpeg" alt="کوشخول اف سی">
+                                </div>
+                                <span class="team-name-compact">کوشخول اف سی</span>
+                            </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><span class="position">3</span></td>
+                        <td>
+                            <div class="team-row">
+                                <div class="team-logo">
+                                    <img src="https://instasize.com/api/image/8d27995c45ba0faf6d44f78f5dbf8d30ead269de424c4d3b7384a511f33c0513.jpeg" alt="شاگردان قلعه نویی">
+                                </div>
+                                <span class="team-name-compact">شاگردان قلعه نویی</span>
+                            </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><span class="position">4</span></td>
+                        <td>
+                            <div class="team-row">
+                                <div class="team-logo">
+                                    <img src="https://instasize.com/api/image/9fce86001d0554dade6a2d8aa6e3f84da67f93208216820b1a94f1d04ed96f66.jpeg" alt="خیارشور اف سی">
+                                </div>
+                                <span class="team-name-compact">خیارشور اف سی</span>
+                            </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><span class="position">5</span></td>
+                        <td>
+                            <div class="team-row">
+                                <div class="team-logo">
+                                    <img src="https://instasize.com/api/image/ae49beb6d4cdba776b65cb4bf529384d5e1d8ce4a8cb5a0521eb76ec01edd132.jpeg" alt="فوت موپ">
+                                </div>
+                                <span class="team-name-compact">فوت موپ</span>
+                            </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><span class="position">6</span></td>
+                        <td>
+                            <div class="team-row">
+                                <div class="team-logo">
+                                    <img src="https://instasize.com/api/image/12ae8087a1437d8db877e5d65ebbaee1e9e1ec5f509aa38b1069910d0b934698.jpeg" alt="آذریورد">
+                                </div>
+                                <span class="team-name-compact">آذریورد</span>
+                            </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><span class="position">7</span></td>
+                        <td>
+                            <div class="team-row">
+                                <div class="team-logo">
+                                    <img src="https://instasize.com/api/image/ef7e18d48d5afc8cb634c8859e122b7f7b679e761ee6e01f38d0bf7bcc9efd67.jpeg" alt="آب موز">
+                                </div>
+                                <span class="team-name-compact">آب موز</span>
+                            </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><span class="position">8</span></td>
+                        <td>
+                            <div class="team-row">
+                                <div class="team-logo">
+                                    <img src="https://instasize.com/api/image/8783c2f4c45a1e0a392d9f9e077503540374af4fca1248f16c5c4e6430de9a36.jpeg" alt="گاتهام یونایتد">
+                                </div>
+                                <span class="team-name-compact">گاتهام یونایتد</span>
+                            </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><span class="position">9</span></td>
+                        <td>
+                            <div class="team-row">
+                                <div class="team-logo">
+                                    <img src="https://instasize.com/api/image/673f11cf0a3c518a05024204d2ab6c58df3aaf921c22eed301910fc6fb4292a6.jpeg" alt="بلولاک">
+                                </div>
+                                <span class="team-name-compact">بلولاک</span>
+                            </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><span class="position">10</span></td>
+                        <td>
+                            <div class="team-row">
+                                <div class="team-logo">
+                                    <img src="https://instasize.com/api/image/c857efc1cbe354be6cc7782c7c8df51cac5331b422f72cf2efc34b83078a240a.jpeg" alt="ستاره سرخ">
+                                </div>
+                                <span class="team-name-compact">ستاره سرخ</span>
+                            </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
